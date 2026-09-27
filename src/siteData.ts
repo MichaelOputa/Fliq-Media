@@ -15,7 +15,46 @@ export const navItems = [
   ['Corporate', '/corporate'],
   ['Personal Branding', '/personal-branding'],
   ['Process', '/process'],
+  ['Pricing', '/pricing'],
   ['Contact', '/contact'],
+] as const;
+
+// Portrait, fashion & editorial "looks" pricing (FliQ Media Rate Card).
+export const lookPackages = [
+  ['1 Look', '2 Retouched Images', '₦200,000'],
+  ['1 Look', '4 Retouched Images', '₦400,000'],
+  ['2 Looks', '6 Retouched Images', '₦550,000'],
+  ['3 Looks', '9 Retouched Images', '₦750,000'],
+  ['4 Looks', '13 Retouched Images', '₦900,000'],
+  ['5 Looks', '18 Retouched Images', '₦1,100,000'],
+  ['6 Looks', '22 Retouched Images', '₦1,300,000'],
+  ['7 Looks', '28 Retouched Images', '₦1,350,000'],
+  ['8 Looks', '35 Retouched Images', '₦1,500,000'],
+  ['9 Looks', '41 Retouched Images', '₦1,650,000'],
+] as const;
+
+// Event / corporate photography — flat hourly rate across event types (FliQ Media Rate Card).
+export const eventTypes = ['Conference & Seminar', 'Campaign Launch Event', 'Boardroom Meeting Event', 'Product Launch Event', 'Corporate Event', 'Birthday Events', 'Activations', 'Lifestyle Events'];
+export const eventHourlyRate = '₦170,000 Per Hour';
+
+// Wedding-day packages (One Day Wedding Packages, Price Guide).
+export const weddingPackages = [
+  ['Love', '₦850,000', ['2 photographers', 'Digital files', 'Complimentary pre-wedding session (2 outfits)']],
+  ['Gold', '₦1,100,000', ['1 briefcase synthetic photobook (50 pages)', '2 wall frames', 'Digital files', 'Complimentary pre-wedding session (2 outfits)']],
+  ['Deluxe', '₦1,650,000', ['2 synthetic photobook briefcases (50 pages each)', '2 photographers', '4 wall frames', 'Digital files', 'Complimentary pre-wedding session (3 outfits)']],
+] as const;
+
+// Pre-wedding packages (Price Guide).
+export const preWeddingPackages = [
+  ['One Outfit', '₦200,000', '5 retouched soft copy photos'],
+  ['Two Outfits', '₦400,000', '10 retouched soft copy photos'],
+  ['Three Outfits', '₦550,000', '15 retouched soft copy photos'],
+] as const;
+
+// Additional hourly services (Price Guide).
+export const hourlyExtras = [
+  ['Wedding-Day Event Photography', '₦100,000 Per Hour'],
+  ['Photography Consultation', '₦50,000 Per Hour'],
 ] as const;
 
 export const services = [
@@ -28,24 +67,5 @@ export const services = [
 ] as const;
 
 export const clients = ['Clinton Foundation', 'Clinton Health Access Initiative', 'Carriagehills', 'Top Global Dubai', 'Smirnoff Ice', 'First Bank of Nigeria', 'VFD Bank', 'VFD Group', 'Sterling Bank', 'Quidax', 'Wirepay', 'Incash Africa', 'Mantra Security'];
-
-// The client roster as presented in the FirstBank x FliQ Media deck (page 6).
-// Kept separate from `clients` above (the site's own curated "trusted by" list)
-// since this is a verbatim reproduction of the deck's own portfolio slide —
-// several names overlap (VFD Group, Sterling Bank, Quidax, Smirnoff Ice,
-// Top Global Dubai) and that overlap is intentional, not a data bug.
-export const firstbankDeckClients = ['Don Jazzy', 'Davido', 'Rick Ross', 'Tiwa Savage', 'Buju', 'Mayorkun', 'Loose Media', 'Carriage Hill & Co', 'VFD Group', 'Herel Real Estate', 'Transcorp Group', 'Boardroom Apartment', 'The Beat 99.9 FM', 'BBNaija Stars', 'Access Bank', 'Top Global Dubai', 'Monnistries Fashion', 'Eko Hotel & Suites', 'Quidax', 'Smirnoff Ice', 'Mentra Security', 'Sterling Bank', 'WirePay', 'InCash Africa', 'Interswitch'];
-
 export const industries = ['Corporate Organizations', 'Government Institutions', 'Multinational Companies', 'Financial Institutions', 'Healthcare Organizations', 'Educational Institutions', 'Technology Companies', 'Real Estate Firms', 'Hospitality Brands', 'Non-Governmental Organizations', 'Media Companies', 'Entertainment Professionals', 'Sports Organizations', 'Luxury Brands', 'Entrepreneurs', 'Business Leaders'];
 export const values = [['Excellence', 'We pursue the highest standards in every project and deliver work that reflects quality, precision, and professionalism.'], ['Creativity', 'We transform ideas into compelling visual experiences that inspire audiences and create meaningful connections.'], ['Integrity', 'We build lasting relationships through honesty, transparency, accountability, and ethical business practices.'], ['Innovation', 'We embrace new ideas, emerging technologies, and creative thinking to remain at the forefront of the industry.'], ['Client Commitment', 'We understand the unique goals of every client and provide tailored solutions that deliver measurable value.'], ['Impact', 'We create visual content that influences perception, strengthens brands, and leaves a lasting impression.']] as const;
-
-// Dedicated corporate case-study project, referenced by both the homepage
-// "Selected Work" grid and the /corporate/firstbank case-study page itself.
-export const firstbankProject = {
-  slug: 'firstbank',
-  client: 'FirstBank, Nigeria',
-  title: 'Digital Marketing Photography',
-  category: 'Corporate Photography',
-  description: 'Visual storytelling built to support brand consistency, audience engagement, and reputation for FirstBank, Nigeria.',
-  heroImage: '/images/firstbank/hero.jpg',
-} as const;
