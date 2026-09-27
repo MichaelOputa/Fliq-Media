@@ -1,15 +1,16 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Check, ChevronRight, MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GoogleIcon, WhatsAppIcon } from '@/BrandIcons';
-import { clients, googleBusinessUrl, industries, services, values, whatsappNumber, whatsappUrl } from '@/siteData';
+import { clients, firstbankDeckClients, firstbankProject, googleBusinessUrl, industries, services, values, whatsappNumber, whatsappUrl } from '@/siteData';
 
 const heroImage = '/images/hero/img-004.jpg';
-const featuredWork = [
+const featuredWork: { category: string; title: string; text: string; image: string; tall: boolean; wide?: boolean; href?: string }[] = [
   { category: 'Executive Portraits', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/portfolio/img-001.jpg', tall: true },
   { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/portfolio/img-002.jpg', tall: false },
   { category: 'Corporate', title: 'Boardroom Presence', text: 'Confidence, made visible.', image: '/images/portfolio/img-003.jpg', tall: false },
   { category: 'Campaigns', title: 'Modern Heritage', text: 'Culture, character, and craft.', image: '/images/portfolio/img-004.jpg', tall: true },
+  { category: firstbankProject.category, title: firstbankProject.client, text: firstbankProject.title, image: firstbankProject.heroImage, tall: false, wide: true, href: `/corporate/${firstbankProject.slug}` },
 ];
 
 const portfolioCategories = ['Corporate', 'Executive Portraits', 'Personal Branding', 'Events', 'Commercial', 'Documentary', 'Campaigns'];
@@ -49,6 +50,41 @@ function WhatsAppButton({ label = 'Book a Consultation', light = false }: { labe
       <WhatsAppIcon size={16} /> {label}
     </a>
   );
+}
+
+// Sets the document title/description for a single page and restores the
+// site-wide defaults on unmount. No metadata library in this project, so
+// this stays a small, self-contained effect rather than a new dependency.
+function usePageMeta(title: string, description: string) {
+  useEffect(() => {
+    const prevTitle = document.title;
+    const metaEl = document.querySelector('meta[name="description"]');
+    const prevDescription = metaEl?.getAttribute('content') ?? '';
+    document.title = title;
+    metaEl?.setAttribute('content', description);
+    return () => {
+      document.title = prevTitle;
+      metaEl?.setAttribute('content', prevDescription);
+    };
+  }, [title, description]);
+}
+
+// Subtle scroll-triggered fade/slide-up entrance, used sparingly on the
+// FirstBank case study. Respects prefers-reduced-motion via the global
+// transition-duration override already defined at the bottom of index.css.
+function Reveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+    }, { threshold: 0.15 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={ref} className={`reveal${visible ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}>{children}</div>;
 }
 
 export function HomePage() {
@@ -197,19 +233,7 @@ export function PortfolioPage() {
           <PageIntro eyebrow="01 / Selected work" title="Made to be" italic="Remembered.">
             <p>Our work is built to do more than look exceptional. It is designed to clarify, elevate, and make an impression that lasts.</p>
           </PageIntro>
-          <div className="portfolio-featured">
-            {featuredWork.map((item) => (
-              <article className={`portfolio-item ${item.tall ? 'portfolio-tall' : ''}`} key={item.title}>
-                <img src={item.image} alt={item.title} />
-                <div className="portfolio-overlay">
-                  <span>{item.category}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  <Link to="/contact">View project <ArrowUpRight size={16} /></Link>
-                </div>
-              </article>
-            ))}
-          </div>
+          <PortfolioGrid />
 
           <div className="portfolio-gallery-heading">
             <p className="eyebrow">02 / Full gallery</p>
@@ -266,6 +290,194 @@ export function CorporatePage() {
           <p className="statement">Our deliverables are designed to extend the life and value of your event far beyond the day it happened.</p>
         </div>
       </section>
+      <section className="feature-section">
+        <div className="feature-image"><img src={firstbankProject.heroImage} alt={firstbankProject.client} /></div>
+        <div className="feature-copy">
+          <p className="eyebrow">Case study</p>
+          <h2>{firstbankProject.client}<br /><em>{firstbankProject.title}.</em></h2>
+          <p>{firstbankProject.description}</p>
+          <Link className="button button-dark" to={`/corporate/${firstbankProject.slug}`}>View Case Study <ArrowUpRight size={16} /></Link>
+        </div>
+      </section>
+      <ContactCta />
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// FirstBank x FliQ Media — corporate photography case study.
+// Content sourced from the FIRST BANK X FLIQ MEDIA presentation deck.
+// ---------------------------------------------------------------------------
+
+const firstbankObjectives = [
+  ['01', 'Brand Consistency', "Our role ensures that the bank's visual identity remains consistent across all digital platforms. This consistency helps build trust and recognition among customers and potential clients."],
+  ['02', 'Engagement', "Through our photography, we tell compelling stories about the bank's mission, values, and community involvement — helping to humanize the institution and connect with its audience on a deeper level."],
+  ['03', 'Reputation Enhancement', 'As a creative and digital photography brand, our high-resolution, quality images contribute to the reputation, differentiation, and trustworthiness of the bank — a crucial factor in the financial industry.'],
+] as const;
+
+const firstbankTechniques = [
+  ['01', 'Composition', 'We experiment with different poses, angles, and positions to create visually interesting compositions.'],
+  ['02', 'Lighting', 'Natural and artificial lighting techniques are used to shape the mood and atmosphere of each photograph.'],
+  ['03', 'Storytelling', 'Photographs are built to capture a story or a moment in time, encouraging subjects to interact and show relationships, feeling, or emotion — candid or carefully staged.'],
+  ['04', 'Location & Background', 'The choice of location and background is considered carefully, complementing the visual interpretation, story, and theme of each project.'],
+  ['05', 'Color & Style', 'Color grading and post-processing techniques are used to create a unique, cohesive visual style.'],
+  ['06', 'Props & Accessories', 'Props and accessories add layers of creativity, revealing personality and enhancing the overall theme.'],
+  ['07', 'Perspective', 'We play with different camera angles and perspectives — high above, ground level, or unusual viewpoints — for a fresh, creative view of the subject.'],
+  ['08', 'Editing & Retouching', 'Post-production techniques are applied to enhance the visual impact of every photograph.'],
+  ['09', 'Emotions & Expressions', 'We encourage genuine emotions and expressions — spontaneous moments that capture raw, authentic feeling and resonate with viewers.'],
+] as const;
+
+const fliqStandard = ['Technical Proficiency', 'Creativity and Innovation', 'Attention to Detail', 'Consistency', 'Adaptability', 'Communication Skills', 'Emotional Intelligence', 'Professionalism', 'Continuous Learning', 'Ethical Standards', 'Portfolio and Body of Work', 'Collaboration'] as const;
+
+const firstbankProcess = [
+  ['01', 'Pre-Shoot Preparation', 'We consult with clients on themes, locations, wardrobe, and special requests, build a moodboard, prepare a shot list and equipment, and arrange any permits the location requires.'],
+  ['02', 'Photography Session', 'We arrive on time, set up lighting, cameras, and accessories, then direct and guide subjects to capture the desired shots while keeping the experience comfortable and enjoyable.'],
+  ['03', 'Post-Processing & Editing', 'RAW files are processed and adjusted, images are edited and retouched to meet quality standards and client expectations, and backups are created to prevent data loss.'],
+  ['04', 'Client Delivery', 'Final edited images are shared through a secure, efficient method — an online gallery, USB drive, or physical prints — with access to view, download, or purchase additional prints or products.'],
+  ['05', 'Invoicing & Payments', 'We generate and send invoices for services and any additional products, monitor payment schedules, follow up on overdue payments, and maintain accurate financial records.'],
+  ['06', 'Legal & Administration', "We read and understand the legal imperatives of photographing each client, stay compliant with local business regulations and tax requirements, and keep organized records of expenses, income, and contracts."],
+  ['07', 'Client Feedback & Follow-Up', 'We request feedback to evaluate service quality and identify areas for improvement, then follow up with clients after the shoot to ensure satisfaction and address any concerns.'],
+] as const;
+
+const firstbankGallerySlots = Array.from({ length: 8 }, (_, i) => i + 1);
+
+export function FirstBankPage() {
+  usePageMeta('FirstBank × FliQ Media | Digital Marketing Photography', 'A FirstBank corporate photography case study by FliQ Media, focused on brand consistency, engagement, reputation and visual storytelling.');
+
+  return (
+    <>
+      <PageHero eyebrow="FirstBank × FliQ Media" title="Digital Marketing" italic="Photography." image={firstbankProject.heroImage} />
+
+      <section className="case-meta-bar">
+        <div className="content-width case-meta-row">
+          <div><span>Client</span><span>{firstbankProject.client}</span></div>
+          <div><span>Category</span><span>{firstbankProject.category}</span></div>
+          <div><span>Focus</span><span>{firstbankProject.title}</span></div>
+          <div><span>Partner</span><span>FliQ Media Photography</span></div>
+        </div>
+      </section>
+
+      <section className="feature-section">
+        <div className="feature-image"><img src="/images/firstbank/overview.jpg" alt="FirstBank digital marketing photography overview" /></div>
+        <div className="feature-copy">
+          <p className="eyebrow">01 / Overview</p>
+          <h2>Presence, <em>Made Consistent.</em></h2>
+          <p>FliQ Media partnered with FirstBank, Nigeria to deliver digital marketing photography built to support the bank's communication across digital platforms. The engagement was guided by three core objectives — brand consistency, engagement, and reputation enhancement — each carried through every frame we produced.</p>
+          <WhatsAppButton label="Discuss a similar project" />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="content-width">
+          <div className="section-heading">
+            <div><p className="eyebrow">02 / Project objectives</p><h2>Our Objectives,<br /><em>In Three Fold.</em></h2></div>
+          </div>
+          <div className="objectives-grid">
+            {firstbankObjectives.map(([number, title, text]) => (
+              <Reveal key={number}>
+                <div className="objective-card">
+                  <span>{number}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="dark-section creative-section">
+        <div className="content-width">
+          <p className="eyebrow light">03 / Creative direction</p>
+          <h2>Our Creative<br /><em>Capacity.</em></h2>
+          <div className="creative-gallery">
+            {['creative-01', 'creative-02', 'creative-03', 'creative-04', 'creative-05', 'creative-06'].map((file, index) => (
+              <article className="portfolio-item" key={file}>
+                <img src={`/images/firstbank/${file}.jpg`} alt={`FliQ Media creative direction, frame ${index + 1}`} />
+              </article>
+            ))}
+          </div>
+          <div className="values-list">
+            {firstbankTechniques.map(([number, title, text]) => (
+              <div className="value-row" key={number}>
+                <span>{number}</span>
+                <div><h3>{title}</h3><p>{text}</p></div>
+                <ChevronRight size={18} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section portfolio">
+        <div className="content-width">
+          <div className="portfolio-gallery-heading" style={{ paddingTop: 0, borderTop: 0 }}>
+            <div><p className="eyebrow">04 / Photography gallery</p><h2>The FirstBank<br /><em>Gallery.</em></h2></div>
+          </div>
+          <p style={{ maxWidth: 560, margin: '0 0 45px', color: '#69645d', fontSize: 13, lineHeight: 1.7 }}>This gallery is reserved for the final FirstBank photography. Once delivered, the images will appear here in the same editorial standard as the rest of our portfolio.</p>
+          <div className="portfolio-gallery">
+            {firstbankGallerySlots.map((slot) => (
+              <article className="gallery-slot" key={slot}>
+                <div className="gallery-slot-inner">
+                  <div className="gallery-placeholder">
+                    <span className="placeholder-number">{String(slot).padStart(2, '0')}</span>
+                    <span className="placeholder-label">FirstBank</span>
+                    <span className="placeholder-hint">Add photo</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="values-section">
+        <div className="content-width">
+          <p className="eyebrow light">05 / The FliQ standard</p>
+          <h2>The Quality Behind<br /><em>Every Frame.</em></h2>
+          <p style={{ maxWidth: 460, marginTop: 24, color: '#a7a39d', fontSize: 13, lineHeight: 1.7 }}>The quality of photographers on our team is the secret behind our success.</p>
+          <div className="attribute-grid" style={{ borderTop: '1px solid #4f4d49', marginTop: 45 }}>
+            {fliqStandard.map((quality, index) => (
+              <span key={quality} style={{ borderBottom: '1px solid #4f4d49', color: 'white' }}>{String(index + 1).padStart(2, '0')} / {quality}</span>
+            ))}
+          </div>
+          <p className="statement" style={{ color: '#d5d1c9' }}>In a creative team, the combined skill, experience, and creative synergy of our photographers produce work greater than the sum of individual talent.</p>
+        </div>
+      </section>
+
+      <section className="process-section">
+        <div className="content-width">
+          <p className="eyebrow light">06 / Execution</p>
+          <h2>How The Project<br /><em>Was Executed.</em></h2>
+          <div className="timeline">
+            {firstbankProcess.map(([number, title, text]) => (
+              <div className="timeline-step" key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="trusted">
+        <div className="content-width">
+          <p className="eyebrow">07 / Selected clients</p>
+          <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', marginBottom: 10 }}>Trusted Across<br /><em>Industries.</em></h2>
+          <div className="client-grid">{firstbankDeckClients.map((client) => <span key={client}>{client}</span>)}</div>
+        </div>
+      </section>
+
+      <section className="case-closing" style={{ backgroundImage: `url('/images/firstbank/closing.jpg')` }}>
+        <div className="content-width">
+          <p className="eyebrow light">FirstBank × FliQ Media Photography</p>
+          <h2>Visual storytelling,<br /><em>built with purpose.</em></h2>
+          <p className="closing-copy">Every frame produced for this engagement was built to strengthen brand consistency, deepen engagement, and enhance reputation — for FirstBank, and for every organization we partner with.</p>
+          <WhatsAppButton label="Start Your Project" />
+        </div>
+      </section>
+
       <ContactCta />
     </>
   );
@@ -383,13 +595,13 @@ function PortfolioGrid() {
   return (
     <div className="portfolio-featured">
       {featuredWork.map((item) => (
-        <article className={`portfolio-item ${item.tall ? 'portfolio-tall' : ''}`} key={item.title}>
+        <article className={`portfolio-item ${item.tall ? 'portfolio-tall' : ''} ${item.wide ? 'portfolio-wide' : ''}`} key={item.title}>
           <img src={item.image} alt={item.title} />
           <div className="portfolio-overlay">
             <span>{item.category}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-            <Link to="/contact">View project <ArrowUpRight size={16} /></Link>
+            <Link to={item.href ?? '/contact'}>View project <ArrowUpRight size={16} /></Link>
           </div>
         </article>
       ))}
