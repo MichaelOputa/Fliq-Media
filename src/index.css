@@ -317,3 +317,20 @@ h2 { font-size: clamp(48px, 6.5vw, 88px); line-height: .96; margin-bottom: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Intro slideshow / loading screen */
+.intro { position: fixed; inset: 0; z-index: 9999; background: #0d0c0b; overflow: hidden; opacity: 1; transition: opacity .9s ease; }
+.intro-leaving { opacity: 0; pointer-events: none; }
+.intro-slide { position: absolute; inset: 0; background-size: cover; background-position: center 30%; background-repeat: no-repeat; opacity: 0; transform: scale(1.12); transition: opacity 1s ease; will-change: opacity, transform; }
+.intro-slide.active { opacity: 1; transform: scale(1); transition: opacity 1s ease, transform 2.4s cubic-bezier(.2,.6,.2,1); }
+.intro-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,9,8,.7) 0%, transparent 40%), linear-gradient(180deg, rgba(10,9,8,.55) 0%, transparent 35%); }
+.intro-logo { position: absolute; top: max(28px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); width: clamp(120px, 18vw, 190px); height: auto; }
+.intro-footer { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 24px; padding: 0 clamp(20px, 4vw, 48px) max(28px, env(safe-area-inset-bottom)); color: white; }
+.intro-count { font: 11px 'DM Mono', monospace; letter-spacing: .14em; }
+.intro-progress { flex: 1; height: 1px; background: rgba(255,255,255,.28); overflow: hidden; }
+.intro-progress i { display: block; height: 100%; background: white; transform: scaleX(0); transform-origin: left; }
+.intro-progress i.run { animation: introProgress linear forwards; }
+.intro-skip { border: 1px solid rgba(255,255,255,.5); background: transparent; color: white; padding: 9px 18px; font: 11px 'DM Mono', monospace; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .2s, color .2s; }
+.intro-skip:hover { background: white; color: #171717; }
+@keyframes introProgress { to { transform: scaleX(1); } }
+@media (max-width: 760px) { .intro-footer { gap: 14px; } .intro-slide { background-position: center 25%; } }
