@@ -332,7 +332,7 @@ export function ProcessPage() {
 export function PricingPage() {
   return (
     <>
-      <PageHero eyebrow="Pricing / 07" title="Investment," italic="made clear." image="/images/portfolio/img-003.jpg" />
+      <PageHero eyebrow="Pricing / 07" title="Investment," italic="made clear." image="/images/hero/img-pricing.jpg" />
       <PageIntro eyebrow="01 / Portraits, fashion & editorial" title="Looks &" italic="Retouching.">
         <p>Priced by the number of looks and finished, retouched images delivered. A look change covers a new outfit, setup, or concept within the same session.</p>
       </PageIntro>
@@ -341,7 +341,11 @@ export function PricingPage() {
           <div className="pricing-table">
             <div className="pricing-row pricing-head"><span>Looks</span><span>Retouched Images</span><span>Price</span></div>
             {lookPackages.map(([looks, images, price]) => (
-              <div className="pricing-row" key={looks + images}><span>{looks}</span><span>{images}</span><span>{price}</span></div>
+              <div className="pricing-row" key={looks + images}>
+                <span data-label="Looks">{looks}</span>
+                <span data-label="Retouched Images">{images}</span>
+                <span data-label="Price">{price}</span>
+              </div>
             ))}
           </div>
         </div>
