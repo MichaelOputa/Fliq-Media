@@ -1,15 +1,37 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
+// Small, screen-fit copies live in /public/images/intro (generated from the
+// full-resolution portfolio photos) so the first frame appears almost
+// instantly instead of waiting on multi-hundred-KB originals.
 const slides = [
-  '/images/hero/img-004.jpg',
-  '/images/portfolio/img-011.jpg',
-  '/images/portfolio/img-044.jpg',
-  '/images/portfolio/img-050.jpg',
-  '/images/portfolio/img-020.jpg',
-  '/images/hero/img-pricing.jpg',
+  '/images/intro/slide-01.jpg',
+  '/images/intro/slide-02.jpg',
+  '/images/intro/slide-03.jpg',
+  '/images/intro/slide-04.jpg',
+  '/images/intro/slide-05.jpg',
+  '/images/intro/slide-06.jpg',
 ];
 const SLIDE_MS = 1700;
+const FIRST_SLIDE_TIMEOUT_MS = 900; // never block the reveal for long
 const STORAGE_KEY = 'fliq-intro-seen';
+
+// Kick preloading off the moment this module is evaluated — before the
+// component even mounts — and cache one shared promise per image so re-runs
+// (StrictMode, re-mounts) don't refetch.
+const preloadCache = new Map<string, Promise<void>>();
+function preload(src: string) {
+  let promise = preloadCache.get(src);
+  if (!promise) {
+    promise = new Promise<void>((resolve) => {
+      const img = new Image();
+      img.onload = img.onerror = () => resolve();
+      img.src = src;
+    });
+    preloadCache.set(src, promise);
+  }
+  return promise;
+}
+slides.forEach(preload);
 
 function shouldShow() {
   try {
@@ -25,6 +47,7 @@ export function IntroSlideshow() {
   const [ready, setReady] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [index, setIndex] = useState(0);
+  const advancing = useRef(false);
 
   const finish = useCallback(() => {
     setLeaving(true);
@@ -32,26 +55,32 @@ export function IntroSlideshow() {
     window.setTimeout(() => setVisible(false), 900);
   }, []);
 
-  // Preload every slide (with a safety timeout) so the show never stutters.
+  // Reveal the instant the first slide is ready — don't wait on the rest.
   useEffect(() => {
     if (!visible) return;
-    let done = false;
-    const start = () => { if (!done) { done = true; setReady(true); } };
-    const timeout = window.setTimeout(start, 4000);
-    Promise.all(slides.map((src) => new Promise<void>((resolve) => {
-      const img = new Image();
-      img.onload = img.onerror = () => resolve();
-      img.src = src;
-    }))).then(() => { window.clearTimeout(timeout); start(); });
-    return () => window.clearTimeout(timeout);
+    let cancelled = false;
+    const timeout = window.setTimeout(() => { if (!cancelled) setReady(true); }, FIRST_SLIDE_TIMEOUT_MS);
+    preload(slides[0]).then(() => {
+      if (cancelled) return;
+      window.clearTimeout(timeout);
+      setReady(true);
+    });
+    return () => { cancelled = true; window.clearTimeout(timeout); };
   }, [visible]);
 
-  // Advance slides, then leave after the last one.
+  // Advance slides. If the next image hasn't finished loading yet (slow
+  // connection), briefly hold the current one instead of flashing blank.
   useEffect(() => {
-    if (!visible || !ready || leaving) return;
+    if (!visible || !ready || leaving || advancing.current) return;
     const timer = window.setTimeout(() => {
-      if (index >= slides.length - 1) finish();
-      else setIndex((i) => i + 1);
+      advancing.current = true;
+      const isLast = index >= slides.length - 1;
+      const next = isLast ? index : index + 1;
+      const proceed = () => {
+        advancing.current = false;
+        if (isLast) finish(); else setIndex(next);
+      };
+      Promise.race([preload(slides[next]), new Promise((r) => window.setTimeout(r, 1200))]).then(proceed);
     }, SLIDE_MS);
     return () => window.clearTimeout(timer);
   }, [visible, ready, leaving, index, finish]);

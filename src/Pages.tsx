@@ -7,7 +7,7 @@ import { clients, eventHourlyRate, eventTypes, googleBusinessUrl, hourlyExtras, 
 const heroImage = '/images/hero/img-004.jpg';
 const featuredWork = [
   { category: 'Executive Portraits', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/portfolio/img-001.jpg', tall: true },
-  { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/portfolio/img-002.jpg', tall: false },
+  { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/portfolio/img-020.jpg', tall: false },
   { category: 'Corporate', title: 'Boardroom Presence', text: 'Confidence, made visible.', image: '/images/portfolio/img-003.jpg', tall: false },
   { category: 'Campaigns', title: 'Modern Heritage', text: 'Culture, character, and craft.', image: '/images/portfolio/img-004.jpg', tall: true },
 ];
@@ -21,28 +21,9 @@ const placeholderSlots: { id: number; path: string; category: string }[] = Array
   return { id: i + 1, path: `/images/portfolio/img-${fileNumber}.jpg`, category: categories[i % categories.length] };
 });
 
-// Focal point per image so faces stay in frame at every screen size.
-const heroFocus: Record<string, string> = {
-  '/images/portfolio/img-001.jpg': 'center 22%',
-  '/images/portfolio/img-002.jpg': 'center 28%',
-  '/images/portfolio/img-003.jpg': 'center 22%',
-  '/images/portfolio/img-044.jpg': 'center 45%',
-  '/images/portfolio/img-050.jpg': 'center 45%',
-  '/images/portfolio/img-051.jpg': 'center 45%',
-  '/images/hero/img-pricing.jpg': 'center 22%',
-  '/images/hero/img-004.jpg': 'center 30%',
-  '/images/services/img-005.jpg': 'center 30%',
-};
-
 function PageHero({ eyebrow, title, italic, image = heroImage }: { eyebrow: string; title: string; italic: string; image?: string }) {
   return (
-    <section
-      className="page-hero"
-      style={{
-        backgroundImage: `linear-gradient(90deg, rgba(10,9,8,.84), rgba(10,9,8,.32)), linear-gradient(0deg, rgba(10,9,8,.55), transparent 45%), url('${image}')`,
-        backgroundPosition: `center, center, ${heroFocus[image] ?? 'center 30%'}`,
-      }}
-    >
+    <section className="page-hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(10,9,8,.84), rgba(10,9,8,.32)), url('${image}')` }}>
       <div className="content-width">
         <p className="eyebrow light">{eyebrow}</p>
         <h1>{title}<br /><em>{italic}</em></h1>
@@ -74,7 +55,7 @@ export function HomePage() {
   return (
     <>
       <section className="hero" aria-label="FliQ Media introduction">
-        <div className="hero-image" style={{ backgroundImage: "url('/images/portfolio/img-050.jpg')" }} />
+        <div className="hero-image logo-hero" />
         <div className="hero-wash" />
         <div className="hero-content content-width">
           <p className="eyebrow light">FliQ Media / Creative direction &amp; visual storytelling</p>
@@ -210,7 +191,7 @@ export function PortfolioPage() {
 
   return (
     <>
-      <PageHero eyebrow="Portfolio / 03" title="Work with" italic="intention." image="/images/portfolio/img-044.jpg" />
+      <PageHero eyebrow="Portfolio / 03" title="Work with" italic="intention." />
       <section className="section portfolio">
         <div className="content-width">
           <PageIntro eyebrow="01 / Selected work" title="Made to be" italic="Remembered.">
@@ -267,7 +248,7 @@ export function PortfolioPage() {
 export function CorporatePage() {
   return (
     <>
-      <PageHero eyebrow="Corporate / 04" title="Presence made" italic="visible." image="/images/portfolio/img-003.jpg" />
+      <PageHero eyebrow="Corporate / 04" title="Presence made" italic="visible." image="/images/services/img-005.jpg" />
       <PageIntro eyebrow="01 / Corporate events" title="Captured With" italic="Purpose.">
         <p>We understand corporate events as strategic platforms for brand positioning, stakeholder engagement, and public perception. Our visual outputs are high-impact assets organizations can deploy across multiple platforms.</p>
       </PageIntro>
@@ -293,7 +274,7 @@ export function CorporatePage() {
 export function PersonalBrandingPage() {
   return (
     <>
-      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/portfolio/img-002.jpg" />
+      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/portfolio/img-020.jpg" />
       <PageIntro eyebrow="01 / Personal branding" title="We create" italic="visual identities.">
         <p className="lead">People buy products. They buy people. They buy stories. They buy perception.</p>
         <p>A person's image is often their first introduction before their voice, work, or reputation speaks. We translate who you are, what you stand for, and the value you represent into images that communicate without words.</p>
@@ -318,7 +299,7 @@ export function PersonalBrandingPage() {
 export function ProcessPage() {
   return (
     <>
-      <PageHero eyebrow="Process / 06" title="From intention" italic="to impact." image="/images/portfolio/img-051.jpg" />
+      <PageHero eyebrow="Process / 06" title="From intention" italic="to impact." />
       <PageIntro eyebrow="01 / The process" title="A considered" italic="approach">
         <p>Every project starts with clarity. We bring structure to the creative process so each decision serves the larger story and your objectives.</p>
       </PageIntro>
@@ -435,7 +416,7 @@ export function PricingPage() {
 export function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact / 08" title="Let's create" italic="with purpose." image="/images/portfolio/img-050.jpg" />
+      <PageHero eyebrow="Contact / 07" title="Let's create" italic="with purpose." image="/images/hero/img-004.jpg" />
       <section className="section contact">
         <div className="content-width contact-grid">
           <div>
