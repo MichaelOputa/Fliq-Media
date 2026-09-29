@@ -55,7 +55,7 @@ export function HomePage() {
   return (
     <>
       <section className="hero" aria-label="FliQ Media introduction">
-        <div className="hero-image logo-hero" />
+        <div className="hero-image" style={{ backgroundImage: "url('/images/portfolio/img-050.jpg')" }} />
         <div className="hero-wash" />
         <div className="hero-content content-width">
           <p className="eyebrow light">FliQ Media / Creative direction &amp; visual storytelling</p>

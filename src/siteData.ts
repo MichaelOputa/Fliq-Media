@@ -60,7 +60,7 @@ export const hourlyExtras = [
 export const services = [
   ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/portfolio/img-001.jpg'],
   ['02', 'Executive Portraits', 'High-end portraits for executives, founders, business leaders, and professionals.', '/images/hero/img-004.jpg'],
-  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/portfolio/img-002.jpg'],
+  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/portfolio/img-020.jpg'],
   ['04', 'Commercial Photography', 'Professional visual content designed to support businesses, campaigns, products, and marketing objectives.', '/images/services/img-005.jpg'],
   ['05', 'Corporate Events', 'Strategic coverage for conferences, summits, launches, executive meetings, and more.', '/images/hero/img-004.jpg'],
   ['06', 'Visual Storytelling', 'Photography and visual content designed to communicate meaningful stories.', '/images/services/img-005.jpg'],
