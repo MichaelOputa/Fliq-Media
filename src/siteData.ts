@@ -58,12 +58,12 @@ export const hourlyExtras = [
 ] as const;
 
 export const services = [
-  ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/portfolio/img-001.jpg'],
+  ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/corporateheadshots/DSC02301.webp'],
   ['02', 'Executive Portraits', 'High-end portraits for executives, founders, business leaders, and professionals.', '/images/hero/img-004.jpg'],
-  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/portfolio/img-020.jpg'],
+  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/personalbrandingportraits/DSC02027.webp'],
   ['04', 'Commercial Photography', 'Professional visual content designed to support businesses, campaigns, products, and marketing objectives.', '/images/services/img-005.jpg'],
-  ['05', 'Corporate Events', 'Strategic coverage for conferences, summits, launches, executive meetings, and more.', '/images/hero/img-004.jpg'],
-  ['06', 'Visual Storytelling', 'Photography and visual content designed to communicate meaningful stories.', '/images/services/img-005.jpg'],
+  ['05', 'Corporate Events', 'Strategic coverage for conferences, summits, launches, executive meetings, and more.', '/images/events/TECH 14.webp'],
+  ['06', 'Visual Storytelling', 'Photography and visual content designed to communicate meaningful stories.', '/images/editorial/301535-1.webp'],
 ] as const;
 
 export const clients = ['Clinton Foundation', 'Clinton Health Access Initiative', 'Carriagehills', 'Top Global Dubai', 'Smirnoff Ice', 'First Bank of Nigeria', 'VFD Bank', 'VFD Group', 'Sterling Bank', 'Quidax', 'Wirepay', 'Incash Africa', 'Mantra Security'];

@@ -53,7 +53,7 @@ h1 em, h2 em { font-family: 'Playfair Display', serif; font-weight: 500; letter-
 .hero-footer span:last-child { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 
 /* Page hero — sub pages */
-.page-hero { position: relative; width: 100%; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; padding: 160px 0 70px; color: white; background-repeat: no-repeat; background-size: 100% 100%, 100% 100%, cover; background-color: #1a1816; }
+.page-hero { position: relative; width: 100%; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; padding: 160px 0 70px; color: white; background-repeat: no-repeat; background-size: cover; background-color: #1a1816; }
 .page-hero h1 { margin-bottom: 0; font-size: clamp(44px, 7vw, 96px); }
 
 .section { padding: 130px 0; }
@@ -111,6 +111,14 @@ h2 { font-size: clamp(48px, 6.5vw, 88px); line-height: .96; margin-bottom: 0; }
 .portfolio-overlay h3 { margin: 12px 0 5px; font: 27px 'Playfair Display', serif; }
 .portfolio-overlay p { margin: 0; color: #d3d0ca; font-size: 12px; }
 .portfolio-overlay a { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+
+.reviews { background: #f5f4f1; }
+.reviews .section-heading { align-items: end; }
+.reviews-intro { max-width: 310px; margin: 0 0 8px; color: #77726b; font-size: 13px; line-height: 1.7; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 28px; }
+.review-item { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; margin: 0; padding-top: 20px; border-top: 1px solid #c9c5bc; }
+.review-item blockquote { margin: 0 0 25px; color: #37342f; font: 19px/1.5 'Playfair Display', serif; }
+.review-item figcaption { margin-top: auto; color: #817b73; font: 10px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
 
 /* Portfolio gallery — 92 placeholder slots */
 .portfolio-gallery-heading { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; padding-top: 50px; border-top: 1px solid #d3cfc6; }
@@ -208,6 +216,29 @@ h2 { font-size: clamp(48px, 6.5vw, 88px); line-height: .96; margin-bottom: 0; }
 .approach-list-light p { color: #69645d; }
 .pricing-note { max-width: 640px; margin-top: 40px; color: #918c84; font-size: 11.5px; line-height: 1.7; }
 
+.booking-contact { padding-bottom: 110px; background: #f5f4f1; }
+.booking-contact-banner { position: relative; min-height: 520px; display: flex; justify-content: center; padding: 52px 22px 170px; overflow: hidden; color: white; background: #171717; text-align: center; }
+.booking-contact-banner::before, .booking-contact-banner::after { position: absolute; inset: 0; content: ''; }
+.booking-contact-banner::before { background: url('/images/hero/img-004.jpg') center 42% / cover; filter: blur(24px) saturate(1.45) brightness(.55); transform: scale(1.12); }
+.booking-contact-banner::after { background: linear-gradient(180deg, rgba(17,17,17,.42), rgba(17,17,17,.68)); }
+.booking-banner-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.booking-banner-content img { width: 82px; height: 82px; margin-bottom: 24px; object-fit: contain; }
+.booking-banner-content .eyebrow { margin-bottom: 16px; }
+.booking-banner-content h1 { max-width: 700px; margin: 0 0 17px; font-size: clamp(42px, 6vw, 72px); line-height: .98; }
+.booking-banner-content > p:last-child { max-width: 420px; margin: 0; color: #e0ddd7; font-size: 14px; line-height: 1.65; }
+.booking-panel-wrap { position: relative; z-index: 2; margin-top: -130px; }
+.booking-panel { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; padding: 52px; background: #fff; box-shadow: 0 18px 60px rgba(15,14,13,.12); }
+.booking-summary h2 { max-width: 430px; font-size: clamp(38px, 4.3vw, 56px); }
+.booking-summary > p:not(.eyebrow) { max-width: 390px; margin: 24px 0 32px; color: #69645d; font-size: 13px; line-height: 1.75; }
+.booking-details { border-top: 1px solid var(--line); }
+.booking-details > div { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.booking-details span { color: #9c968d; font: 10px 'DM Mono', monospace; }
+.booking-details p { margin: 0; color: #4c4944; font-size: 12px; }
+.booking-summary .contact-links { margin-top: 30px; }
+.booking-form-wrap { padding-top: 3px; }
+.booking-form-wrap > .eyebrow { margin-bottom: 27px; }
+.booking-panel .contact-form { padding-top: 0; }
+.booking-panel .contact-form .button { align-self: flex-start; }
 .contact { background: #e4e1db; }
 .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 125px; }
 .contact-grid > div:first-child h2 { font-size: clamp(42px, 5vw, 64px); }
@@ -264,10 +295,17 @@ h2 { font-size: clamp(48px, 6.5vw, 88px); line-height: .96; margin-bottom: 0; }
   .page-hero { padding: 120px 0 50px; }
   .section { padding: 80px 0; }
   .page-intro, .mission-grid, .values-grid, .personal-grid, .industries-grid, .contact-grid { display: block; }
+  .booking-contact { padding-bottom: 70px; } .booking-contact-banner { min-height: 470px; padding: 42px 22px 145px; }
+  .booking-banner-content img { width: 70px; height: 70px; margin-bottom: 20px; }
+  .booking-panel-wrap { margin-top: -110px; }
+  .booking-panel { grid-template-columns: 1fr; gap: 48px; padding: 30px 24px; }
+  .booking-summary h2 { font-size: 42px; }
+  .booking-form-wrap { padding-top: 0; }
   .intro-copy { padding-top: 35px; }
   .capability-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .mission { padding: 80px 0; } .mission-card { margin-top: 50px; } .mission-card p { margin-top: 25px; font-size: 19px; }
   .section-heading { display: block; margin-bottom: 45px; } .section-heading > .text-link { margin-top: 25px; }
+  .reviews-intro { margin-top: 25px; } .reviews-grid { grid-template-columns: 1fr; gap: 32px; } .review-item blockquote { font-size: 18px; }
   .service-grid { grid-template-columns: 1fr; gap: 45px; } .service-image { aspect-ratio: 1.15; }
   .values-section { padding: 80px 0; } .values-list { margin-top: 55px; } .value-row { grid-template-columns: 35px 1fr 18px; }
   .portfolio-featured, .portfolio-grid { grid-template-columns: 1fr; } .portfolio-item, .portfolio-item.portfolio-tall { min-height: 470px; }
@@ -319,10 +357,10 @@ h2 { font-size: clamp(48px, 6.5vw, 88px); line-height: .96; margin-bottom: 0; }
 }
 
 /* Intro slideshow / loading screen */
-.intro { position: fixed; inset: 0; z-index: 9999; background: #0d0c0b; overflow: hidden; opacity: 1; transition: opacity .9s ease; }
+.intro { position: fixed; inset: 0; z-index: 9999; background: #0d0c0b; overflow: hidden; opacity: 1; transition: opacity .45s ease; }
 .intro-leaving { opacity: 0; pointer-events: none; }
-.intro-slide { position: absolute; inset: 0; background-size: cover; background-position: center 30%; background-repeat: no-repeat; opacity: 0; transform: scale(1.12); transition: opacity 1s ease; will-change: opacity, transform; }
-.intro-slide.active { opacity: 1; transform: scale(1); transition: opacity 1s ease, transform 2.4s cubic-bezier(.2,.6,.2,1); }
+.intro-slide { position: absolute; inset: 0; background-size: cover; background-position: center 30%; background-repeat: no-repeat; opacity: 0; transform: scale(1.12); transition: opacity .55s ease; }
+.intro-slide.active { opacity: 1; transform: scale(1); will-change: opacity, transform; transition: opacity .55s ease, transform 1.2s cubic-bezier(.2,.6,.2,1); }
 .intro-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,9,8,.7) 0%, transparent 40%), linear-gradient(180deg, rgba(10,9,8,.55) 0%, transparent 35%); }
 .intro-logo { position: absolute; top: max(28px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); width: clamp(120px, 18vw, 190px); height: auto; }
 .intro-footer { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 24px; padding: 0 clamp(20px, 4vw, 48px) max(28px, env(safe-area-inset-bottom)); color: white; }

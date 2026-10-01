@@ -1,25 +1,29 @@
 import { FormEvent, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Check, ChevronRight, MoveRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, ChevronRight, MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GoogleIcon, WhatsAppIcon } from '@/BrandIcons';
 import { clients, eventHourlyRate, eventTypes, googleBusinessUrl, hourlyExtras, industries, lookPackages, preWeddingPackages, services, values, weddingPackages, whatsappNumber, whatsappUrl } from '@/siteData';
+import { portfolioImages } from './portfolioImages';
 
 const heroImage = '/images/hero/img-004.jpg';
 const featuredWork = [
-  { category: 'Executive Portraits', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/portfolio/img-001.jpg', tall: true },
-  { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/portfolio/img-020.jpg', tall: false },
-  { category: 'Corporate', title: 'Boardroom Presence', text: 'Confidence, made visible.', image: '/images/portfolio/img-003.jpg', tall: false },
-  { category: 'Campaigns', title: 'Modern Heritage', text: 'Culture, character, and craft.', image: '/images/portfolio/img-004.jpg', tall: true },
+  { category: 'Corporate Headshots', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/corporateheadshots/DSC02301.webp', tall: true },
+  { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/personalbrandingportraits/DSC02027.webp', tall: false },
+  { category: 'Commercial', title: 'Boardroom Presence', text: 'Confidence, made visible.', image: '/images/commercial/DSC03481.webp', tall: false },
+  { category: 'Editorial', title: 'Modern Heritage', text: 'Culture, character, and craft.', image: '/images/editorial/301521.webp', tall: true },
 ];
 
-const portfolioCategories = ['Corporate', 'Executive Portraits', 'Personal Branding', 'Events', 'Commercial', 'Documentary', 'Campaigns'];
-
-// 92 full-gallery slots, populated with the client's portfolio images (img-005.jpg through img-096.jpg).
-const placeholderSlots: { id: number; path: string; category: string }[] = Array.from({ length: 92 }, (_, i) => {
-  const categories = portfolioCategories;
-  const fileNumber = String(i + 5).padStart(3, '0');
-  return { id: i + 1, path: `/images/portfolio/img-${fileNumber}.jpg`, category: categories[i % categories.length] };
-});
+const portfolioCategories = ['Commercial', 'Corporate Headshots', 'Editorial', 'Events', 'Lifestyle', 'Music Concerts', 'Personal Branding', 'Weddings'];
+const clientReviews = [
+  { name: 'BeatFM', quote: 'The best pictures were the night pics. Impressive work, bro.' },
+  { name: 'Dr Priscilla Canada', quote: 'I received the package, and both Gab and I really like the quality and the way the photos were arranged in the album. It looks beautiful! We wish you had printed more calendars because we would love to give some to our parents.' },
+  { name: 'Daniel Coast', quote: 'Thanks a lot, man. The photos you took were lovely.' },
+  { name: 'Labake', quote: 'Hope the rest of your weekend went well. The photos are so lovely! Thank you.' },
+  { name: 'Stella Uko', quote: 'The photos are lovely. Many thanks.' },
+  { name: 'Sir Dickson', quote: 'The pictures are really good.' },
+  { name: 'Leap Africa', quote: 'Thank you so much for today. I truly appreciate your timeliness and professionalism. The team said you were professional, smart, composed, and fully prepared. You and your colleague were calm and never pressured anything. They praised the quality of your work and your ability to direct without crossing boundaries.' },
+  { name: 'Dora', quote: "It's so nice that you still have all of these. Thank you for the nice photos, worth a thousand memories." },
+];
 
 function PageHero({ eyebrow, title, italic, image = heroImage }: { eyebrow: string; title: string; italic: string; image?: string }) {
   return (
@@ -55,7 +59,7 @@ export function HomePage() {
   return (
     <>
       <section className="hero" aria-label="FliQ Media introduction">
-        <div className="hero-image" style={{ backgroundImage: "url('/images/portfolio/img-050.jpg')" }} />
+        <div className="hero-image" style={{ backgroundImage: "url('/images/editorial/301521.webp')" }} />
         <div className="hero-wash" />
         <div className="hero-content content-width">
           <p className="eyebrow light">FliQ Media / Creative direction &amp; visual storytelling</p>
@@ -116,6 +120,23 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="section reviews">
+        <div className="content-width">
+          <div className="section-heading">
+            <div><p className="eyebrow">06 / Client notes</p><h2>Seen through<br /><em>their eyes.</em></h2></div>
+            <p className="reviews-intro">A few words from the people and teams who trusted us with their moments.</p>
+          </div>
+          <div className="reviews-grid">
+            {clientReviews.map((review) => (
+              <figure className="review-item" key={review.name}>
+                <blockquote>{review.quote}</blockquote>
+                <figcaption>{review.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="promise">
         <div className="content-width">
           <p className="eyebrow light">The FliQ promise</p>
@@ -132,7 +153,7 @@ export function HomePage() {
 export function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About FliQ Media / 01" title="A sharper point" italic="of view." image="/images/portfolio/img-001.jpg" />
+      <PageHero eyebrow="About FliQ Media / 01" title="A sharper point" italic="of view." image="/images/corporateheadshots/DSC02301.webp" />
       <PageIntro eyebrow="01 / The perspective" title="More Than" italic="Photography.">
         <p className="lead">We create visual identity.</p>
         <p>FliQ Media is a premium creative media company dedicated to producing exceptional visual content and strategic branding solutions for executives, organizations, institutions, businesses, public figures, and global brands.</p>
@@ -167,7 +188,7 @@ export function ServicesPage() {
         <div className="content-width"><ServiceGrid /></div>
       </section>
       <section className="feature-section" id="corporate">
-        <div className="feature-image"><img src="/images/services/img-005.jpg" alt="Corporate visual storytelling" /></div>
+        <div className="feature-image"><img src="/images/services/img-005.jpg" alt="Corporate visual storytelling" loading="lazy" decoding="async" /></div>
         <div className="feature-copy">
           <p className="eyebrow">Corporate events</p>
           <h2>Captured<br />With <em>Purpose.</em></h2>
@@ -187,7 +208,7 @@ export function ServicesPage() {
 
 export function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const filtered = activeCategory === 'All' ? placeholderSlots : placeholderSlots.filter((s) => s.category === activeCategory);
+  const filtered = activeCategory === 'All' ? portfolioImages : portfolioImages.filter((image) => image.category === activeCategory);
 
   return (
     <>
@@ -200,7 +221,7 @@ export function PortfolioPage() {
           <div className="portfolio-featured">
             {featuredWork.map((item) => (
               <article className={`portfolio-item ${item.tall ? 'portfolio-tall' : ''}`} key={item.title}>
-                <img src={item.image} alt={item.title} />
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
                 <div className="portfolio-overlay">
                   <span>{item.category}</span>
                   <h3>{item.title}</h3>
@@ -223,17 +244,9 @@ export function PortfolioPage() {
 
           <div className="portfolio-gallery">
             {filtered.map((slot) => (
-              <article className="gallery-slot" key={slot.id}>
+                <article className="gallery-slot" key={slot.path}>
                 <div className="gallery-slot-inner">
-                  {slot.path ? (
-                    <img src={slot.path} alt={`Portfolio ${slot.id}`} />
-                  ) : (
-                    <div className="gallery-placeholder">
-                      <span className="placeholder-number">{String(slot.id).padStart(2, '0')}</span>
-                      <span className="placeholder-label">{slot.category}</span>
-                      <span className="placeholder-hint">Add image</span>
-                    </div>
-                  )}
+                  <img src={slot.path} alt={`${slot.category} photography`} loading="lazy" />
                 </div>
               </article>
             ))}
@@ -274,7 +287,7 @@ export function CorporatePage() {
 export function PersonalBrandingPage() {
   return (
     <>
-      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/portfolio/img-020.jpg" />
+      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/personalbrandingportraits/DSC02027.webp" />
       <PageIntro eyebrow="01 / Personal branding" title="We create" italic="visual identities.">
         <p className="lead">People buy products. They buy people. They buy stories. They buy perception.</p>
         <p>A person's image is often their first introduction before their voice, work, or reputation speaks. We translate who you are, what you stand for, and the value you represent into images that communicate without words.</p>
@@ -416,19 +429,36 @@ export function PricingPage() {
 export function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact / 07" title="Let's create" italic="with purpose." image="/images/hero/img-004.jpg" />
-      <section className="section contact">
-        <div className="content-width contact-grid">
-          <div>
-            <p className="eyebrow">01 / Start a conversation</p>
-            <h2>Make your next move <em>memorable.</em></h2>
-            <p>Book a consultation directly on WhatsApp and tell us about your project.</p>
-            <div className="contact-links">
-              <a href={whatsappUrl} target="_blank" rel="noreferrer"><WhatsAppIcon size={17} /> WhatsApp <strong>{whatsappNumber}</strong></a>
-              <a href={googleBusinessUrl} target="_blank" rel="noreferrer"><GoogleIcon size={17} /> Find FliQ Media on Google</a>
+      <section className="booking-contact">
+        <div className="booking-contact-banner">
+          <div className="booking-banner-content">
+            <img src="/fliq_media_logo.png" alt="FliQ Media" />
+            <p className="eyebrow light">FliQ Media / Contact</p>
+            <h1>Let's make it<br /><em>memorable.</em></h1>
+            <p>Tell us what you have in mind and let's plan your next shoot.</p>
+          </div>
+        </div>
+        <div className="content-width booking-panel-wrap">
+          <div className="booking-panel">
+            <div className="booking-summary">
+              <p className="eyebrow">Start a conversation</p>
+              <h2>Make your next move <em>memorable.</em></h2>
+              <p>From personal branding to corporate events, share a few details and we'll take it from there.</p>
+              <div className="booking-details">
+                <div><span>01</span><p>Photography &amp; portraits</p></div>
+                <div><span>02</span><p>Corporate &amp; commercial work</p></div>
+                <div><span>03</span><p>Events &amp; visual storytelling</p></div>
+              </div>
+              <div className="contact-links">
+                <a href={whatsappUrl} target="_blank" rel="noreferrer"><WhatsAppIcon size={17} /> WhatsApp <strong>{whatsappNumber}</strong></a>
+                <a href={googleBusinessUrl} target="_blank" rel="noreferrer"><GoogleIcon size={17} /> Find FliQ Media on Google</a>
+              </div>
+            </div>
+            <div className="booking-form-wrap">
+              <p className="eyebrow">Project inquiry</p>
+              <ContactForm />
             </div>
           </div>
-          <ContactForm />
         </div>
       </section>
     </>
@@ -440,7 +470,7 @@ function ServiceGrid({ limit }: { limit?: number }) {
     <div className="service-grid">
       {services.slice(0, limit).map(([number, title, text, image]) => (
         <article className="service-card" key={number}>
-          <div className="service-image"><img src={image} alt={title} /></div>
+          <div className="service-image"><img src={image} alt={title} loading="lazy" decoding="async" /></div>
           <div className="service-meta"><span>{number}</span><h3>{title}</h3><ArrowUpRight size={19} /></div>
           <p>{text}</p>
         </article>
@@ -468,7 +498,7 @@ function PortfolioGrid() {
     <div className="portfolio-featured">
       {featuredWork.map((item) => (
         <article className={`portfolio-item ${item.tall ? 'portfolio-tall' : ''}`} key={item.title}>
-          <img src={item.image} alt={item.title} />
+          <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
           <div className="portfolio-overlay">
             <span>{item.category}</span>
             <h3>{item.title}</h3>
@@ -494,33 +524,41 @@ function ContactCta() {
 }
 
 function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSubmitted(true); };
-  return submitted ? (
-    <div className="form-success">
-      <div><Check size={22} /></div>
-      <h3>Thank you for reaching out.</h3>
-      <p>We'll be in touch soon to discuss how we can create with purpose.</p>
-    </div>
-  ) : (
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const message = [
+      "Hello FliQ Media, I'd like to discuss a project.",
+      '',
+      `Name: ${formData.get('fullName')}`,
+      `Company / organization: ${formData.get('company') || 'Not provided'}`,
+      `Email: ${formData.get('email')}`,
+      `Phone: ${formData.get('phone') || 'Not provided'}`,
+      `Service: ${formData.get('service')}`,
+      `Project details: ${formData.get('details')}`,
+    ].join('\n');
+    const whatsappBaseUrl = whatsappUrl.split('?')[0];
+    window.open(`${whatsappBaseUrl}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+  };
+  return (
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="form-row">
-        <label>Full name<input required placeholder="Your name" /></label>
-        <label>Company / organization<input placeholder="Company name" /></label>
+        <label>Full name<input name="fullName" required placeholder="Your name" /></label>
+        <label>Company / organization<input name="company" placeholder="Company name" /></label>
       </div>
       <div className="form-row">
-        <label>Email address<input required type="email" placeholder="you@company.com" /></label>
-        <label>Phone number<input placeholder="Your phone number" /></label>
+        <label>Email address<input name="email" required type="email" placeholder="you@company.com" /></label>
+        <label>Phone number<input name="phone" placeholder="Your phone number" /></label>
       </div>
-      <label>Service required<select defaultValue="" required>
+      <label>Service required<select name="service" defaultValue="" required>
         <option value="" disabled>Select a service</option>
         <option>Corporate Photography</option>
         <option>Personal Branding</option>
         <option>Corporate Events</option>
         <option>Commercial Photography</option>
       </select></label>
-      <label>Project details<textarea required placeholder="Tell us about your project" rows={5} /></label>
-      <button className="button button-dark" type="submit">Start a Conversation <ArrowUpRight size={16} /></button>
+      <label>Project details<textarea name="details" required placeholder="Tell us about your project" rows={5} /></label>
+      <button className="button button-dark" type="submit"><WhatsAppIcon size={16} /> Continue on WhatsApp <ArrowUpRight size={16} /></button>
     </form>
   );
 }

@@ -11,8 +11,8 @@ const slides = [
   '/images/intro/slide-05.jpg',
   '/images/intro/slide-06.jpg',
 ];
-const SLIDE_MS = 1700;
-const FIRST_SLIDE_TIMEOUT_MS = 900; // never block the reveal for long
+const SLIDE_MS = 900;
+const FIRST_SLIDE_TIMEOUT_MS = 350; // never block the reveal for long
 const STORAGE_KEY = 'fliq-intro-seen';
 
 // Kick preloading off the moment this module is evaluated — before the
@@ -52,7 +52,7 @@ export function IntroSlideshow() {
   const finish = useCallback(() => {
     setLeaving(true);
     try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch { /* ignore */ }
-    window.setTimeout(() => setVisible(false), 900);
+    window.setTimeout(() => setVisible(false), 450);
   }, []);
 
   // Reveal the instant the first slide is ready — don't wait on the rest.
