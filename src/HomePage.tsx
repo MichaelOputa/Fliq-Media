@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight, MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ContactCta, PageIntro, PortfolioGrid, ServiceGrid, ValueList, WhatsAppButton } from '@/PageParts';
+import { ContactPage } from '@/ContactPage';
+import { PageIntro, PortfolioGrid, ServiceGrid, ValueList, WhatsAppButton } from '@/PageParts';
 
 const clientReviews = [
   { name: 'BeatFM', quote: 'The best pictures were the night pics. Impressive work, bro.' },
@@ -17,7 +18,7 @@ export function HomePage() {
   return (
     <>
       <section className="hero" aria-label="FliQ Media introduction">
-        <div className="hero-image" style={{ backgroundImage: "url('/images/editorial/301521.webp')" }} />
+        <div className="hero-image" style={{ backgroundImage: "url('/images/hero/homepage.jpeg')" }} />
         <div className="hero-wash" />
         <div className="hero-content content-width">
           <p className="eyebrow light">FliQ Media / Creative direction &amp; visual storytelling</p>
@@ -102,7 +103,7 @@ export function HomePage() {
           <p>Every project receives the same level of attention, professionalism, and dedication regardless of its size or scope.</p>
         </div>
       </section>
-      <ContactCta />
+      <ContactPage />
     </>
   );
 }

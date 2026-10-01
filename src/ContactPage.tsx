@@ -152,10 +152,15 @@ export function ContactPage() {
                 </div>
                 <label>Service required<select name="service" defaultValue="" required>
                   <option value="" disabled>Select a service</option>
-                  <option>Corporate Photography</option>
-                  <option>Personal Branding</option>
-                  <option>Corporate Events</option>
                   <option>Commercial Photography</option>
+                  <option>Corporate Headshots</option>
+                  <option>Editorial Photography</option>
+                  <option>Event Photography</option>
+                  <option>Lifestyle Photography</option>
+                  <option>Music &amp; Concert Photography</option>
+                  <option>Personal Branding</option>
+                  <option>Wedding Photography</option>
+                  <option>Visual Storytelling</option>
                   <option>Other</option>
                 </select></label>
                 <label>Project details<textarea name="details" required placeholder="Tell us about your project" rows={5} /></label>

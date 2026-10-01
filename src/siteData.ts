@@ -9,6 +9,7 @@ export const tiktokUrl = 'https://tiktok.com/@Fliq.media';
 export const pinterestUrl = 'https://pinterest.com/FliQMedia';
 
 export const navItems = [
+  ['Home', '/'],
   ['About', '/about'],
   ['Services', '/services'],
   ['Portfolio', '/portfolio'],
