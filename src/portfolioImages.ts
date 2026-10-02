@@ -38,7 +38,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Corporate Headshots',
-    featuredImage: '/images/corporateheadshots/337fb0d9-a48f-47cb-8a46-68eb65197d3c.webp',
+    featuredImage: '/images/corporateheadshots/IMG_4929.JPG.jpeg',
     paths: [
       '/images/corporateheadshots/337fb0d9-a48f-47cb-8a46-68eb65197d3c.jpg',
       '/images/corporateheadshots/4c657dd6-eee9-4ac9-9d91-9330d61c9585.jpg',
@@ -51,7 +51,7 @@ const portfolioImageGroups = [
       '/images/corporateheadshots/DSC08990.JPG',
       '/images/corporateheadshots/DSC09187.JPG',
       '/images/corporateheadshots/DSC09287.JPG',
-      '/images/corporateheadshots/IMG_8426.JPG',
+      '/images/corporateheadshots/IMG_4929.JPG.jpeg',
       '/images/corporateheadshots/kDSC09589.JPG',
       '/images/corporateheadshots/Leap-Africa-HS.-20260015-2-Recovered.JPG',
       '/images/corporateheadshots/Leap-Africa-HS.-20260122.JPG',

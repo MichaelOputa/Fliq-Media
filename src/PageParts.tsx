@@ -4,7 +4,7 @@ import { WhatsAppIcon } from '@/BrandIcons';
 import { services, values, whatsappUrl } from '@/siteData';
 
 const featuredWork = [
-  { category: 'Corporate Headshots', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/corporateheadshots/DSC02301.webp', tall: true },
+  { category: 'Corporate Headshots', title: 'The Authority Series', text: 'Portraiture with presence and purpose.', image: '/images/corporateheadshots/IMG_4929.JPG', tall: true },
   { category: 'Personal Branding', title: 'Distinctly You', text: 'A visual identity in every frame.', image: '/images/personalbrandingportraits/CHIOMA169.webp', tall: false },
   { category: 'Commercial', title: 'Boardroom Presence', text: 'Confidence, made visible.', image: '/images/commercial/DSC03481.webp', tall: false },
   { category: 'Editorial', title: 'Modern Heritage', text: 'Culture, character, and craft.', image: '/images/editorial/301521.webp', tall: true },

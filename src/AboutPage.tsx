@@ -3,7 +3,7 @@ import { ContactCta, PageHero, PageIntro } from '@/PageParts';
 export function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About FliQ Media / 01" title="A sharper point" italic="of view." image="/images/corporateheadshots/DSC02301.webp" />
+      <PageHero eyebrow="About FliQ Media / 01" title="A sharper point" italic="of view." image="/images/corporateheadshots/IMG_4929.JPG.jpeg" />
       <PageIntro eyebrow="01 / The perspective" title="More Than" italic="Photography.">
         <p className="lead">We create visual identity.</p>
         <p>FliQ Media is a premium creative media company dedicated to producing exceptional visual content and strategic branding solutions for executives, organizations, institutions, businesses, public figures, and global brands.</p>

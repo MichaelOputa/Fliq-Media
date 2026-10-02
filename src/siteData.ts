@@ -58,7 +58,7 @@ export const hourlyExtras = [
 ] as const;
 
 export const services = [
-  ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/corporateheadshots/DSC02301.webp'],
+  ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/corporateheadshots/IMG_4929.JPG.jpeg'],
   ['02', 'Executive Portraits', 'High-end portraits for executives, founders, business leaders, and professionals.', '/images/hero/img-004.jpg'],
   ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/corporateheadshots/BUSOLAMI-MARTINS-.webp'],
   ['04', 'Commercial Photography', 'Professional visual content designed to support businesses, campaigns, products, and marketing objectives.', '/images/commercial/DSC_3525-1.webp'],

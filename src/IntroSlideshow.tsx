@@ -1,9 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { portfolioGenres } from '@/portfolioImages';
 
-const slides = portfolioGenres.map(({ image }) => image);
-const SLIDE_MS = 1500;
-const FIRST_SLIDE_TIMEOUT_MS = 350; // never block the reveal for long
+// Small, screen-fit copies live in /public/images/intro (generated from the
+// full-resolution portfolio photos) so the first frame appears almost
+// instantly instead of waiting on multi-hundred-KB originals.
+const slides = [
+  '/images/intro/slide-01.webp',
+  '/images/intro/slide-02.webp',
+  '/images/intro/slide-03.webp',
+  '/images/intro/slide-04.jpeg',
+  '/images/intro/slide-05.jpeg',
+  '/images/intro/slide-06.jpeg',
+  '/images/intro/slide-07.webp',
+  '/images/intro/slide-08.jpeg',
+  '/images/intro/slide-09.jpeg',
+  '/images/intro/slide-10.jpeg',
+];
+const SLIDE_MS = 1700;
+const FIRST_SLIDE_TIMEOUT_MS = 900; // never block the reveal for long
 const STORAGE_KEY = 'fliq-intro-seen';
 
 // Kick preloading off the moment this module is evaluated — before the
@@ -43,7 +56,7 @@ export function IntroSlideshow() {
   const finish = useCallback(() => {
     setLeaving(true);
     try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch { /* ignore */ }
-    window.setTimeout(() => setVisible(false), 450);
+    window.setTimeout(() => setVisible(false), 900);
   }, []);
 
   // Reveal the instant the first slide is ready — don't wait on the rest.
