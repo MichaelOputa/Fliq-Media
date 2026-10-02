@@ -69,7 +69,7 @@ export function ContactPage() {
       </div>
       <div className="content-width booking-panel-wrap">
         <section className="booking-service-card" aria-label="Consultation details">
-          <h2>Photography Consultation</h2>
+          <h2>Book A Consultation</h2>
           <div className="booking-service-meta">
             <span><Clock3 size={18} /> 30 minutes</span>
             <span><CalendarDays size={18} /> Complimentary</span>
