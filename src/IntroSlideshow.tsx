@@ -1,16 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { portfolioGenres } from '@/portfolioImages';
 
-// Small, screen-fit copies live in /public/images/intro (generated from the
-// full-resolution portfolio photos) so the first frame appears almost
-// instantly instead of waiting on multi-hundred-KB originals.
-const slides = [
-  '/images/intro/slide-01.webp',
-  '/images/intro/slide-02.webp',
-  '/images/intro/slide-03.webp',
-  '/images/intro/slide-04.jpeg',
-  '/images/intro/slide-05.jpeg',
-  '/images/intro/slide-06.jpeg',
-];
+const slides = portfolioGenres.map(({ image }) => image);
 const SLIDE_MS = 1500;
 const FIRST_SLIDE_TIMEOUT_MS = 350; // never block the reveal for long
 const STORAGE_KEY = 'fliq-intro-seen';

@@ -1,7 +1,24 @@
 const portfolioImageGroups = [
   {
     category: 'Commercial',
+    featuredImage: '/images/commercial/DSC_3525-1.webp',
     paths: [
+      '/images/commercial/fliq Media.jpg',
+      '/images/commercial/fliq Media 1.jpg',
+      '/images/commercial/fliq Media 2.jpg',
+      '/images/commercial/fliq Media 3.jpg',
+      '/images/commercial/fliq Media 4.jpg',
+      '/images/commercial/fliq Media 5.jpg',
+      '/images/commercial/fliq Media 6.jpg',
+      '/images/commercial/fliq Media 7.jpg',
+      '/images/commercial/fliq Media 8.jpg',
+      '/images/commercial/DSC05147.jpg',
+      '/images/commercial/DSC05207.jpg',
+      '/images/commercial/DSC05209.jpg',
+      '/images/commercial/FliQ Media 33.jpg',
+      '/images/commercial/FliQ Media 39.jpg',
+      '/images/commercial/FliQ Media 40.jpg',
+      '/images/commercial/FliQ Media 41.jpg',
       '/images/commercial/2A7301518.JPG',
       '/images/commercial/DSC_3511.JPG',
       '/images/commercial/DSC_3525-1.JPG',
@@ -11,18 +28,17 @@ const portfolioImageGroups = [
       '/images/commercial/DSC03489.JPG',
       '/images/commercial/fliq Media 372.JPG',
       '/images/commercial/fliq Media 377.JPG',
-      '/images/commercial/FliQ Media X Genti 259.JPG',
       '/images/commercial/FliQ Media X Genti 261 10.37.09 am.JPG',
       '/images/commercial/FliQ Media X Genti 261 10.41.43 am.JPG',
       '/images/commercial/FliQ Media X Genti 274.JPG',
       '/images/commercial/FliQ-Media-Pictures-266.JPG',
       '/images/commercial/FliQ-Media-Pictures-269.JPG',
       '/images/commercial/IMG_1638.JPG',
-      '/images/commercial/IMG_1639.JPG',
     ],
   },
   {
     category: 'Corporate Headshots',
+    featuredImage: '/images/corporateheadshots/337fb0d9-a48f-47cb-8a46-68eb65197d3c.webp',
     paths: [
       '/images/corporateheadshots/337fb0d9-a48f-47cb-8a46-68eb65197d3c.jpg',
       '/images/corporateheadshots/4c657dd6-eee9-4ac9-9d91-9330d61c9585.jpg',
@@ -50,6 +66,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Editorial',
+    featuredImage: '/images/editorial/301521.webp',
     paths: [
       '/images/editorial/301521.JPG',
       '/images/editorial/301535-1.JPG',
@@ -79,6 +96,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Events',
+    featuredImage: '/images/events/TECH 14.webp',
     paths: [
       '/images/events/A7309822.JPG',
       '/images/events/FliQ Media 183.JPEG',
@@ -111,6 +129,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Lifestyle',
+    featuredImage: '/images/lifestyle/DSC08650.webp',
     paths: [
       '/images/lifestyle/A7309828.JPG',
       '/images/lifestyle/DSC_t654521.JPG',
@@ -171,6 +190,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Music Concerts',
+    featuredImage: '/images/musicconcerts/IMG_4850.webp',
     paths: [
       '/images/musicconcerts/8216EF41-10C8-49D5-8C92-986267A1D7D7 10.50.46 am.JPG',
       '/images/musicconcerts/B5FD1BF9-0FF3-42A2-9537-1FDBAB2D2590 10.50.46 am.JPG',
@@ -191,6 +211,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Personal Branding',
+    featuredImage: '/images/personalbrandingportraits/CHIOMA169.webp',
     paths: [
       '/images/personalbrandingportraits/25e4c7ff-1f00-404a-a32f-843269d1e871.jpg',
       '/images/personalbrandingportraits/30NEW8904.JPG',
@@ -226,6 +247,7 @@ const portfolioImageGroups = [
   },
   {
     category: 'Weddings',
+    featuredImage: '/images/weddings/0V5A9921.webp',
     paths: [
       '/images/weddings/0V5A9921.JPG',
       '/images/weddings/0V5A9923.JPG',
@@ -279,6 +301,18 @@ const portfolioImageGroups = [
   },
 ] as const;
 
+export const portfolioGenres = portfolioImageGroups.map(({ category, featuredImage }) => ({ category, image: featuredImage }));
+
 export const portfolioImages = portfolioImageGroups.flatMap(({ category, paths }) =>
-  paths.map((path) => ({ category, path: path.replace(/\.(jpe?g)$/i, '.webp') })),
+  paths.map((path) => ({
+    category,
+    path: category === 'Commercial' && [
+      'DSC05147.jpg', 'DSC05207.jpg', 'DSC05209.jpg',
+      'FliQ Media 33.jpg', 'FliQ Media 39.jpg', 'FliQ Media 40.jpg', 'FliQ Media 41.jpg',
+      'fliq Media.jpg', 'fliq Media 1.jpg', 'fliq Media 2.jpg', 'fliq Media 3.jpg', 'fliq Media 4.jpg',
+      'fliq Media 5.jpg', 'fliq Media 6.jpg', 'fliq Media 7.jpg', 'fliq Media 8.jpg',
+    ].some((filename) => path.endsWith(`/${filename}`))
+      ? path
+      : path.replace(/\.(jpe?g)$/i, '.webp'),
+  })),
 );

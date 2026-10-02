@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, CalendarDays, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { WhatsAppIcon } from '@/BrandIcons';
 import { services, values, whatsappUrl } from '@/siteData';
@@ -34,11 +34,19 @@ export function PageIntro({ eyebrow, title, italic, children }: { eyebrow: strin
   );
 }
 
-export function WhatsAppButton({ label = 'Book a Consultation', light = false }: { label?: string; light?: boolean }) {
+export function WhatsAppButton({ label, light = false }: { label: string; light?: boolean }) {
   return (
     <a className={`button ${light ? 'button-outline-light' : 'button-dark'}`} href={whatsappUrl} target="_blank" rel="noreferrer">
       <WhatsAppIcon size={16} /> {label}
     </a>
+  );
+}
+
+export function BookingButton({ light = false }: { light?: boolean }) {
+  return (
+    <Link className={`button ${light ? 'button-outline-light' : 'button-dark'}`} to="/contact">
+      <CalendarDays size={16} /> Book a Consultation
+    </Link>
   );
 }
 
@@ -94,7 +102,7 @@ export function ContactCta() {
       <div className="content-width">
         <p className="eyebrow light">Start a conversation</p>
         <h2>Ready to create something that <em>commands attention?</em></h2>
-        <WhatsAppButton />
+        <BookingButton />
       </div>
     </section>
   );

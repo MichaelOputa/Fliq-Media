@@ -1,7 +1,8 @@
-import { ArrowDown, ArrowUpRight, CalendarDays, MoveRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ContactPage } from '@/ContactPage';
-import { PageIntro, PortfolioGrid, ServiceGrid, ValueList } from '@/PageParts';
+import { BookingButton, PageIntro, PortfolioGrid, ValueList } from '@/PageParts';
+import { portfolioGenres } from '@/portfolioImages';
 
 const clientReviews = [
   { name: 'BeatFM', quote: 'The best pictures were the night pics. Impressive work, bro.' },
@@ -26,7 +27,7 @@ export function HomePage() {
           <p className="hero-copy">Premium photography, visual storytelling, and strategic brand communication for individuals, organizations, and brands that value excellence.</p>
           <div className="button-row">
             <Link className="button button-light" to="/portfolio">Explore Our Work <ArrowUpRight size={16} /></Link>
-            <Link className="button button-outline-light" to="/contact"><CalendarDays size={16} /> Book a Consultation</Link>
+            <BookingButton light />
           </div>
         </div>
         <div className="hero-footer content-width">
@@ -54,7 +55,14 @@ export function HomePage() {
             <div><p className="eyebrow">03 / The offering</p><h2>What We <em>Do</em></h2></div>
             <Link className="text-link" to="/services">View all services <MoveRight size={18} /></Link>
           </div>
-          <ServiceGrid limit={3} />
+          <div className="genre-grid">
+            {portfolioGenres.map(({ category, image }, index) => (
+              <article className="genre-card" key={category}>
+                <div className="genre-image"><img src={image} alt={`${category} photography`} loading="lazy" decoding="async" /></div>
+                <div className="genre-caption"><span>{String(index + 1).padStart(2, '0')}</span><h3>{category}</h3></div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
