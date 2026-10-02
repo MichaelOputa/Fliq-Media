@@ -51,7 +51,6 @@ const portfolioImageGroups = [
       '/images/corporateheadshots/DSC08990.JPG',
       '/images/corporateheadshots/DSC09187.JPG',
       '/images/corporateheadshots/DSC09287.JPG',
-      '/images/corporateheadshots/IMG_4929.JPG.jpeg',
       '/images/corporateheadshots/kDSC09589.JPG',
       '/images/corporateheadshots/Leap-Africa-HS.-20260015-2-Recovered.JPG',
       '/images/corporateheadshots/Leap-Africa-HS.-20260122.JPG',
