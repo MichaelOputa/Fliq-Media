@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowUpRight, Instagram, Linkedin, Menu, X } from 'lucide-react';
+import { ArrowUpRight, CalendarDays, Instagram, Linkedin, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { FacebookIcon, GoogleIcon, PinterestIcon, TikTokIcon, WhatsAppIcon, XIcon } from '@/BrandIcons';
 import { facebookUrl, googleBusinessUrl, instagramUrl, navItems, pinterestUrl, tiktokUrl, whatsappNumber, whatsappUrl, xUrl } from '@/siteData';
@@ -19,9 +19,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {navItems.map(([label, path]) => (
             <Link className={location.pathname === path ? 'active' : ''} to={path} key={path} onClick={closeMenu}>{label}</Link>
           ))}
-          <a className="nav-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
-            <WhatsAppIcon size={15} /> Book a Consultation
-          </a>
+          <Link className="nav-cta" to="/contact" onClick={closeMenu}>
+            <CalendarDays size={15} /> Book a Consultation
+          </Link>
         </nav>
         <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}

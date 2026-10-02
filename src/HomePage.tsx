@@ -1,7 +1,7 @@
-import { ArrowDown, ArrowUpRight, MoveRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, CalendarDays, MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ContactPage } from '@/ContactPage';
-import { PageIntro, PortfolioGrid, ServiceGrid, ValueList, WhatsAppButton } from '@/PageParts';
+import { PageIntro, PortfolioGrid, ServiceGrid, ValueList } from '@/PageParts';
 
 const clientReviews = [
   { name: 'BeatFM', quote: 'The best pictures were the night pics. Impressive work, bro.' },
@@ -26,7 +26,7 @@ export function HomePage() {
           <p className="hero-copy">Premium photography, visual storytelling, and strategic brand communication for individuals, organizations, and brands that value excellence.</p>
           <div className="button-row">
             <Link className="button button-light" to="/portfolio">Explore Our Work <ArrowUpRight size={16} /></Link>
-            <WhatsAppButton light />
+            <Link className="button button-outline-light" to="/contact"><CalendarDays size={16} /> Book a Consultation</Link>
           </div>
         </div>
         <div className="hero-footer content-width">
