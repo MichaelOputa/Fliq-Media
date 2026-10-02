@@ -17,7 +17,7 @@ export const navItems = [
   ['Personal Branding', '/personal-branding'],
   ['Process', '/process'],
   ['Pricing', '/pricing'],
-  ['Contact', '/contact'],
+  ['Booking / Contact', '/contact'],
 ] as const;
 
 // Portrait, fashion & editorial "looks" pricing (FliQ Media Rate Card).
@@ -40,16 +40,15 @@ export const eventHourlyRate = '₦170,000 Per Hour';
 
 // Wedding-day packages (One Day Wedding Packages, Price Guide).
 export const weddingPackages = [
-  ['Love', '₦850,000', ['2 photographers', 'Digital files', 'Complimentary pre-wedding session (2 outfits)']],
-  ['Gold', '₦1,100,000', ['1 briefcase synthetic photobook (50 pages)', '2 wall frames', 'Digital files', 'Complimentary pre-wedding session (2 outfits)']],
-  ['Deluxe', '₦1,650,000', ['2 synthetic photobook briefcases (50 pages each)', '2 photographers', '4 wall frames', 'Digital files', 'Complimentary pre-wedding session (3 outfits)']],
+  ['Love', '₦850,000', ['2 photographers', 'Digital files']],
+  ['Gold', '₦1,100,000', ['1 briefcase synthetic photobook (50 pages)', '2 wall frames', 'Digital files']],
+  ['Deluxe', '₦1,650,000', ['2 synthetic photobook briefcases (50 pages each)', '2 photographers', '4 wall frames', 'Digital files']],
 ] as const;
 
 // Pre-wedding packages (Price Guide).
 export const preWeddingPackages = [
-  ['One Outfit', '₦200,000', '5 retouched soft copy photos'],
-  ['Two Outfits', '₦400,000', '10 retouched soft copy photos'],
-  ['Three Outfits', '₦550,000', '15 retouched soft copy photos'],
+  ['One Outfit', '₦350,000', '4 retouched images'],
+  ['Two Outfits', '₦700,000', '8 retouched images'],
 ] as const;
 
 // Additional hourly services (Price Guide).
@@ -61,12 +60,12 @@ export const hourlyExtras = [
 export const services = [
   ['01', 'Corporate Headshots', 'Professional portraits designed to communicate credibility, confidence, and professionalism.', '/images/corporateheadshots/DSC02301.webp'],
   ['02', 'Executive Portraits', 'High-end portraits for executives, founders, business leaders, and professionals.', '/images/hero/img-004.jpg'],
-  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/personalbrandingportraits/DSC02027.webp'],
+  ['03', 'Personal Branding', "Strategic photography built around your industry, personality, audience, goals, and message.", '/images/corporateheadshots/BUSOLAMI-MARTINS-.webp'],
   ['04', 'Commercial Photography', 'Professional visual content designed to support businesses, campaigns, products, and marketing objectives.', '/images/services/img-005.jpg'],
   ['05', 'Corporate Events', 'Strategic coverage for conferences, summits, launches, executive meetings, and more.', '/images/events/TECH 14.webp'],
   ['06', 'Visual Storytelling', 'Photography and visual content designed to communicate meaningful stories.', '/images/editorial/301535-1.webp'],
 ] as const;
 
-export const clients = ['Clinton Foundation', 'Clinton Health Access Initiative', 'Carriagehills', 'Top Global Dubai', 'Smirnoff Ice', 'First Bank of Nigeria', 'VFD Bank', 'VFD Group', 'Sterling Bank', 'Quidax', 'Wirepay', 'Incash Africa', 'Mantra Security'];
+export const clients = ['Clinton Foundation', 'Clinton Health Access Initiative', 'Carriagehills &CO (US)', 'Top Global Dubai', 'Smirnoff Ice', 'First Bank of Nigeria', 'VFD Bank', 'VFD Group', 'Sterling Bank', 'Quidax', 'Wirepay', 'Incash Africa', 'Mantra Protection LTD.', 'BeatFM', 'Gamma Record Label', 'FlyTime Promotions'];
 export const industries = ['Corporate Organizations', 'Government Institutions', 'Multinational Companies', 'Financial Institutions', 'Healthcare Organizations', 'Educational Institutions', 'Technology Companies', 'Real Estate Firms', 'Hospitality Brands', 'Non-Governmental Organizations', 'Media Companies', 'Entertainment Professionals', 'Sports Organizations', 'Luxury Brands', 'Entrepreneurs', 'Business Leaders'];
 export const values = [['Excellence', 'We pursue the highest standards in every project and deliver work that reflects quality, precision, and professionalism.'], ['Creativity', 'We transform ideas into compelling visual experiences that inspire audiences and create meaningful connections.'], ['Integrity', 'We build lasting relationships through honesty, transparency, accountability, and ethical business practices.'], ['Innovation', 'We embrace new ideas, emerging technologies, and creative thinking to remain at the forefront of the industry.'], ['Client Commitment', 'We understand the unique goals of every client and provide tailored solutions that deliver measurable value.'], ['Impact', 'We create visual content that influences perception, strengthens brands, and leaves a lasting impression.']] as const;

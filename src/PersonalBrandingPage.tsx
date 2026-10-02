@@ -3,7 +3,7 @@ import { ContactCta, PageHero, PageIntro } from '@/PageParts';
 export function PersonalBrandingPage() {
   return (
     <>
-      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/personalbrandingportraits/DSC02027.webp" />
+      <PageHero eyebrow="Personal Branding / 05" title="People buy" italic="perception." image="/images/personalbrandingportraits/CHIOMA169.webp" />
       <PageIntro eyebrow="01 / Personal branding" title="We create" italic="visual identities.">
         <p className="lead">People buy products. They buy people. They buy stories. They buy perception.</p>
         <p>A person's image is often their first introduction before their voice, work, or reputation speaks. We translate who you are, what you stand for, and the value you represent into images that communicate without words.</p>

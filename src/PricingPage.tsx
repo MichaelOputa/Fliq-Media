@@ -31,7 +31,7 @@ export function PricingPage() {
       <section className="section">
         <div className="content-width">
           <PageIntro eyebrow="03 / Weddings" title="One-Day Wedding" italic="Packages.">
-            <p>Every wedding package includes a complimentary pre-wedding session. Choose the tier that matches how you want the day preserved.</p>
+            <p>Choose the tier that matches how you want your wedding day preserved.</p>
           </PageIntro>
           <div className="package-grid">
             {weddingPackages.map(([name, price, features]) => (

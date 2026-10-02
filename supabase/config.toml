@@ -1,0 +1,7 @@
+project_id = "fliq-media"
+
+[functions.create-invoice]
+verify_jwt = true
+
+[functions.email-invoice]
+verify_jwt = true

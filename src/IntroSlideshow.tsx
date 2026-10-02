@@ -4,14 +4,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 // full-resolution portfolio photos) so the first frame appears almost
 // instantly instead of waiting on multi-hundred-KB originals.
 const slides = [
-  '/images/intro/slide-01.jpg',
-  '/images/intro/slide-02.jpg',
-  '/images/intro/slide-03.jpg',
-  '/images/intro/slide-04.jpg',
-  '/images/intro/slide-05.jpg',
-  '/images/intro/slide-06.jpg',
+  '/images/intro/slide-01.webp',
+  '/images/intro/slide-02.webp',
+  '/images/intro/slide-03.webp',
+  '/images/intro/slide-04.jpeg',
+  '/images/intro/slide-05.jpeg',
+  '/images/intro/slide-06.jpeg',
 ];
-const SLIDE_MS = 900;
+const SLIDE_MS = 1500;
 const FIRST_SLIDE_TIMEOUT_MS = 350; // never block the reveal for long
 const STORAGE_KEY = 'fliq-intro-seen';
 
