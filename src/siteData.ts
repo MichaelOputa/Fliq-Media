@@ -42,7 +42,7 @@ export const eventHourlyRate = '₦170,000 Per Hour';
 export const weddingPackages = [
   ['Love', '₦850,000', ['2 photographers', 'Digital files']],
   ['Gold', '₦1,100,000', ['1 briefcase synthetic photobook (50 pages)', '2 wall frames', 'Digital files']],
-  ['Deluxe', '₦1,650,000', ['2 synthetic photobook briefcases (50 pages each)', '2 photographers', '4 wall frames', 'Digital files']],
+  ['Deluxe', '₦1,650,000', ['1 synthetic photobook briefcase (50 pages each)', '2 photographers', '4 wall frames', 'Digital files']],
 ] as const;
 
 // Pre-wedding packages (Price Guide).
